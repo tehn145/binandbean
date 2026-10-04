@@ -82,6 +82,12 @@
 </head>
 <body class="relative min-h-screen flex flex-col justify-between selection:bg-rose-200 selection:text-rose-800">
 
+    <!-- THẺ AUDIO NHẠC NỀN TỰ ĐỘNG PHÁT -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="nhac.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ thẻ audio.
+    </audio>
+
     <div id="sparkle-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
 
     <header class="w-full py-4 px-6 flex justify-between items-center z-20 sticky top-0 bg-white/70 backdrop-blur-md border-b border-rose-100 shadow-sm">
@@ -91,8 +97,8 @@
         </div>
         <div class="flex items-center space-x-2 sm:space-x-3">
             <button id="music-toggle" class="bg-rose-100 hover:bg-rose-200 text-rose-600 px-3 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center space-x-1.5 transition-all transform hover:scale-105 shadow-sm">
-                <i class="fa-solid fa-music" id="music-icon"></i>
-                <span id="music-text">Nhạc Nền</span>
+                <i class="fa-solid fa-music animate-spin" id="music-icon"></i>
+                <span id="music-text">Tắt Nhạc</span>
             </button>
             <button id="open-letter-btn" class="bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center space-x-1.5 transition-all transform hover:scale-105 shadow-sm">
                 <i class="fa-solid fa-envelope-open-text"></i>
@@ -154,10 +160,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Memory Item 1 -->
                 <div class="glass-card rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300 group">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://placehold.co/600x400/ffe4e6/f43f5e?text=First+Date+%E2%99%A5" alt="First Date" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffccd5/e11d48?text=Bin+and+Bean'">
+                        <img src="https://placehold.co/600x400/ffe4e6/f43f5e?text=First+Date+%E2%99%A5" alt="First Date" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                             <span class="text-white text-sm font-semibold">Buổi hẹn hò đầu tiên ngập tràn nụ cười 😊</span>
                         </div>
@@ -171,10 +176,9 @@
                     </div>
                 </div>
 
-                <!-- Memory Item 2 -->
                 <div class="glass-card rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300 group">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://placehold.co/600x400/fef3c7/d97706?text=Sweet+Trip+%E2%99%A5" alt="Sweet Trip" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffccd5/e11d48?text=Bin+and+Bean'">
+                        <img src="https://placehold.co/600x400/fef3c7/d97706?text=Sweet+Trip+%E2%99%A5" alt="Sweet Trip" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                             <span class="text-white text-sm font-semibold">Cùng nhau đi đến tận cùng thế giới ✈</span>
                         </div>
@@ -188,10 +192,9 @@
                     </div>
                 </div>
 
-                <!-- Memory Item 3 -->
                 <div class="glass-card rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300 group">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://placehold.co/600x400/ecfdf5/059669?text=Cozy+Moments+%E2%99%A5" alt="Cozy Moments" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffccd5/e11d48?text=Bin+and+Bean'">
+                        <img src="https://placehold.co/600x400/ecfdf5/059669?text=Cozy+Moments+%E2%99%A5" alt="Cozy Moments" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                             <span class="text-white text-sm font-semibold">Bên nhau bình yên thế này là đủ ☕</span>
                         </div>
@@ -208,7 +211,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-16">
-            <!-- Love Notes Box -->
             <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-pacifico text-2xl text-rose-500 mb-2 flex items-center space-x-2">
@@ -238,7 +240,6 @@
                 </div>
             </div>
 
-            <!-- Why I Love You Card -->
             <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-pacifico text-2xl text-amber-600 mb-2 flex items-center space-x-2">
@@ -291,6 +292,15 @@
     </footer>
 
     <script>
+        // Tự động kích hoạt nhạc ngay khi người dùng chạm/click bất kỳ đâu trên trang (phòng trường hợp trình duyệt chặn autoplay)
+        const bgMusic = document.getElementById('bgMusic');
+        document.addEventListener('click', function autoPlayOnce() {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(e => console.log("Audio play prevented"));
+            }
+            document.removeEventListener('click', autoPlayOnce);
+        }, { once: true });
+
         // Sparkle generation
         const sparkleContainer = document.getElementById('sparkle-container');
         const sparkleCount = 35;
@@ -370,7 +380,6 @@
                 document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
                 document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
             } else {
-                // If before Aug 28, 2026 or exactly at start
                 document.getElementById('days').innerText = "00";
                 document.getElementById('hours').innerText = "00";
                 document.getElementById('minutes').innerText = "00";
@@ -380,72 +389,25 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Web Audio API Synthesized Relaxing Melody
-        let audioCtx = null;
-        let isPlayingMusic = false;
-        let melodyInterval = null;
-
+        // Music Toggle Button functionality
         const musicToggle = document.getElementById('music-toggle');
         const musicIcon = document.getElementById('music-icon');
         const musicText = document.getElementById('music-text');
-
-        function playTone(freq, duration, type = 'sine', gainVal = 0.05) {
-            if (!audioCtx) return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-                gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch (e) {
-                console.log("Audio play error", e);
-            }
-        }
-
-        const notesSequence = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50]; // C5 major scale
-        
-        function startMelody() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            isPlayingMusic = true;
-            musicIcon.classList.remove('fa-music');
-            musicIcon.classList.add('fa-pause', 'animate-spin');
-            musicText.innerText = 'Tắt Nhạc';
-
-            let step = 0;
-            melodyInterval = setInterval(() => {
-                if (!isPlayingMusic) return;
-                const note = notesSequence[Math.floor(Math.random() * notesSequence.length)];
-                playTone(note, 1.5, 'sine', 0.04);
-            }, 1200);
-        }
-
-        function stopMelody() {
-            isPlayingMusic = false;
-            clearInterval(melodyInterval);
-            musicIcon.classList.remove('fa-pause', 'animate-spin');
-            musicIcon.classList.add('fa-music');
-            musicText.innerText = 'Nhạc Nền';
-        }
+        let isPlaying = true;
 
         musicToggle.addEventListener('click', () => {
-            if (!isPlayingMusic) {
-                startMelody();
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.classList.remove('fa-pause', 'animate-spin');
+                musicIcon.classList.add('fa-music');
+                musicText.innerText = 'Bật Nhạc';
             } else {
-                stopMelody();
+                bgMusic.play();
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-pause', 'animate-spin');
+                musicText.innerText = 'Tắt Nhạc';
             }
+            isPlaying = !isPlaying;
         });
 
         // Love Letter Modal functionality

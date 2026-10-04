@@ -3,529 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bin & Bean - Our Sweet Love Story 💖</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Quicksand & Pacifico -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Bin & Bean Love Story - 50 Năm Về Sau</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Canvas Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <style>
+        :root {
+            --primary-pink: #ff477e;
+            --light-pink: #ff85a1;
+            --soft-yellow: #fff0f3;
+            --accent-purple: #7b2cbf;
+            --text-color: #4a4e69;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #fff1f2 0%, #fef3c7 50%, #ecfdf5 100%);
-            color: #4b5563;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe3e8 50%, #fff0f3 100%);
+            color: var(--text-color);
+            min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
-        .font-pacifico {
-            font-family: 'Pacifico', cursive;
+
+        /* Hiệu ứng trái tim nền bay */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
         }
+
+        .heart-float {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(255, 71, 126, 0.4);
+            animation: floatUp 6s linear infinite;
+            font-size: 20px;
+        }
+
         @keyframes floatUp {
             0% {
-                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                transform: translateY(0) rotate(0deg) scale(0.8);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-10vh) scale(1.3) rotate(360deg);
+                transform: translateY(-105vh) rotate(360deg) scale(1.4);
                 opacity: 0;
             }
         }
-        .floating-heart {
-            position: fixed;
-            color: #f43f5e;
-            animation: floatUp 4s linear infinite;
-            z-index: 10;
-            pointer-events: none;
-            user-select: none;
+
+        /* Container chính */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15);
+            z-index: 2;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+
+        /* Tiêu đề */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
         }
-        .sparkle {
-            position: absolute;
-            background: #fbbf24;
-            border-radius: 50%;
-            animation: twinkle 2s infinite ease-in-out;
-            pointer-events: none;
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-weight: 500;
         }
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s infinite;
+
+        /* Phần tên cặp đôi */
+        .couple-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+
+        .name-tag {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #ff477e, #ff70a6);
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+            animation: pulseBeat 2s infinite;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.78);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+
+        .heart-icon {
+            font-size: 2rem;
+            color: #ff2a5f;
+            animation: bounce 1.2s infinite alternate;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        @keyframes pulseBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
         }
-        ::-webkit-scrollbar-thumb {
-            background: #fda4af;
-            border-radius: 4px;
+
+        /* Bộ đếm thời gian */
+        .countdown-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #d90429;
+            margin-bottom: 15px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #f43f5e;
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .time-card {
+            background: white;
+            border: 2px solid #ffccd5;
+            padding: 15px 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            color: #8d99ae;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Thư tình & Nút tương tác */
+        .love-section {
+            background: #fff0f3;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px dashed var(--light-pink);
+        }
+
+        .love-message {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #590d22;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #ff477e, #ff5c8a);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
+            background: linear-gradient(135deg, #d90429, #ff477e);
+        }
+
+        /* Trình phát nhạc hiển thị giao diện */
+        .music-player-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 20px;
+            display: inline-flex;
+        }
+
+        .music-disc {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .music-info {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 600px) {
+            .title { font-size: 2.8rem; }
+            .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 25px 15px; }
         }
     </style>
 </head>
-<body class="relative min-h-screen flex flex-col justify-between selection:bg-rose-200 selection:text-rose-800">
+<body>
 
-    <div id="sparkle-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+    <!-- Hiệu ứng trái tim bay nền -->
+    <div class="floating-hearts" id="floatingHearts"></div>
 
-    <header class="w-full py-4 px-6 flex justify-between items-center z-20 sticky top-0 bg-white/70 backdrop-blur-md border-b border-rose-100 shadow-sm">
-        <div class="flex items-center space-x-2">
-            <span class="text-2xl animate-bounce">🧸</span>
-            <h1 class="font-pacifico text-2xl text-rose-500">Bin & Bean</h1>
+    <div class="container">
+        <!-- Tiêu đề trang -->
+        <h1 class="title">Bin &amp; Bean</h1>
+        <p class="subtitle">Nguyện cầu đến 50 năm về sau vẫn luôn có nhau ❤️</p>
+
+        <!-- Tên cặp đôi -->
+        <div class="couple-box">
+            <div class="name-tag">Bin 👦🏻</div>
+            <div class="heart-icon"><i class="fa-solid fa-heart"></i></div>
+            <div class="name-tag">Bean 👧🏻</div>
         </div>
-        <div class="flex items-center space-x-2 sm:space-x-3">
-            <button id="music-toggle" class="bg-rose-100 hover:bg-rose-200 text-rose-600 px-3 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center space-x-1.5 transition-all transform hover:scale-105 shadow-sm">
-                <i class="fa-solid fa-music" id="music-icon"></i>
-                <span id="music-text">Nhạc Nền</span>
-            </button>
-            <button id="open-letter-btn" class="bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center space-x-1.5 transition-all transform hover:scale-105 shadow-sm">
-                <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Thư Tình</span>
-            </button>
-            <button id="love-btn" class="bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white px-4 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center space-x-1.5 transition-all transform hover:scale-105 shadow-md">
-                <i class="fa-solid fa-heart animate-pulse"></i>
-                <span>Thả Tim</span>
-            </button>
-        </div>
-    </header>
 
-    <main class="flex-grow container mx-auto px-4 py-8 z-10 max-w-5xl flex flex-col items-center">
-        
-        <div class="text-center my-8">
-            <div class="inline-block p-2 px-4 rounded-full bg-amber-100 text-amber-700 font-semibold text-sm mb-4 shadow-sm animate-pulse">
-                ✨ Mãi Mãi Bên Nhau Kể Từ Ngày 28 Tháng 8, 2026 ✨
+        <!-- Đồng hồ đếm thời gian từ 28/08/2026 -->
+        <div class="countdown-title">✨ Thời gian bên nhau kể từ 28/08/2026 ✨</div>
+        <div class="countdown-grid">
+            <div class="time-card">
+                <span class="time-number" id="days">0</span>
+                <span class="time-label">Ngày</span>
             </div>
-            <h2 class="font-pacifico text-4xl md:text-6xl text-rose-600 mb-4 drop-shadow-sm typing-cursor" id="typing-title">
-                Bin & Bean Love Story
-            </h2>
-            <p class="text-gray-600 max-w-lg mx-auto text-base md:text-lg font-medium">
-                Nơi lưu giữ từng khoảnh khắc ngọt ngào, những nụ cười và hành trình hạnh phúc của chúng mình.
+            <div class="time-card">
+                <span class="time-number" id="hours">0</span>
+                <span class="time-label">Giờ</span>
+            </div>
+            <div class="time-card">
+                <span class="time-number" id="minutes">0</span>
+                <span class="time-label">Phút</span>
+            </div>
+            <div class="time-card">
+                <span class="time-number" id="seconds">0</span>
+                <span class="time-label">Giây</span>
+            </div>
+        </div>
+
+        <!-- Hộp thư tình yêu nhỏ -->
+        <div class="love-section">
+            <p class="love-message" id="loveQuote">
+                &ldquo;Cảm ơn vì đã đến bên đời nhau, cùng nhau vượt qua mọi giông bão để đến ngày hôm nay và mãi mãi về sau...&rdquo;
             </p>
+            <button class="btn-action" onclick="showLoveWish()">Gửi Ngàn Yêu Thương 💌</button>
         </div>
 
-        <div class="glass-card w-full max-w-3xl rounded-3xl p-6 md:p-8 shadow-xl mb-12 text-center transform hover:shadow-2xl transition duration-500">
-            <h3 class="font-pacifico text-2xl text-pink-600 mb-2 flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-calendar-heart text-rose-400"></i>
-                <span>Đếm Từng Giây Hạnh Phúc</span>
-            </h3>
-            <p class="text-xs text-rose-500 font-semibold mb-6">Mốc khởi đầu: 28 Tháng 8, 2026 🌸</p>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white/80 p-4 rounded-2xl shadow-inner border border-rose-100">
-                    <span id="days" class="text-3xl md:text-4xl font-bold text-rose-500 block">00</span>
-                    <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Ngày</span>
-                </div>
-                <div class="bg-white/80 p-4 rounded-2xl shadow-inner border border-amber-100">
-                    <span id="hours" class="text-3xl md:text-4xl font-bold text-amber-500 block">00</span>
-                    <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Giờ</span>
-                </div>
-                <div class="bg-white/80 p-4 rounded-2xl shadow-inner border border-emerald-100">
-                    <span id="minutes" class="text-3xl md:text-4xl font-bold text-emerald-500 block">00</span>
-                    <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Phút</span>
-                </div>
-                <div class="bg-white/80 p-4 rounded-2xl shadow-inner border border-pink-100">
-                    <span id="seconds" class="text-3xl md:text-4xl font-bold text-pink-500 block">00</span>
-                    <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Giây</span>
-                </div>
-            </div>
-            <p class="text-gray-500 italic text-sm">"Mỗi giây bên cậu đều là món quà tuyệt vời nhất đối với tớ." 💕</p>
-        </div>
-
-        <div class="w-full mb-16">
-            <div class="text-center mb-10">
-                <h3 class="font-pacifico text-3xl text-rose-500 mb-2">Album Kỷ Niệm 📸</h3>
-                <p class="text-gray-600 text-sm">Những khoảnh khắc không thể nào quên của Bin & Bean</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Memory Item 1 -->
-                <div class="glass-card rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300 group">
-                    <div class="relative overflow-hidden h-64">
-                        <img src="https://placehold.co/600x400/ffe4e6/f43f5e?text=First+Date+%E2%99%A5" alt="First Date" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffccd5/e11d48?text=Bin+and+Bean'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
-                            <span class="text-white text-sm font-semibold">Buổi hẹn hò đầu tiên ngập tràn nụ cười 😊</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-bold text-lg text-gray-800">Lần Đầu Hò Hẹn</h4>
-                            <span class="text-xs bg-rose-100 text-rose-600 px-2.5 py-1 rounded-full font-medium">Kỷ niệm</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Cảm giác hồi hộp, ánh mắt ngại ngùng nhưng vô cùng ấm áp.</p>
-                    </div>
-                </div>
-
-                <!-- Memory Item 2 -->
-                <div class="glass-card rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300 group">
-                    <div class="relative overflow-hidden h-64">
-                        <img src="https://placehold.co/600x400/fef3c7/d97706?text=Sweet+Trip+%E2%99%A5" alt="Sweet Trip" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffccd5/e11d48?text=Bin+and+Bean'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
-                            <span class="text-white text-sm font-semibold">Cùng nhau đi đến tận cùng thế giới ✈</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-bold text-lg text-gray-800">Chuyến Đi Xa</h4>
-                            <span class="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-medium">Khám phá</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Nắm tay nhau đi qua bao vùng đất mới, lưu giữ bao kỷ niệm đẹp.</p>
-                    </div>
-                </div>
-
-                <!-- Memory Item 3 -->
-                <div class="glass-card rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300 group">
-                    <div class="relative overflow-hidden h-64">
-                        <img src="https://placehold.co/600x400/ecfdf5/059669?text=Cozy+Moments+%E2%99%A5" alt="Cozy Moments" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffccd5/e11d48?text=Bin+and+Bean'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
-                            <span class="text-white text-sm font-semibold">Bên nhau bình yên thế này là đủ ☕</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-bold text-lg text-gray-800">Ngày Bình Yên</h4>
-                            <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-medium">Hạnh phúc</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Cùng uống trà sữa, xem phim và kể nhau nghe những câu chuyện nhỏ.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-16">
-            <!-- Love Notes Box -->
-            <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between">
-                <div>
-                    <h3 class="font-pacifico text-2xl text-rose-500 mb-2 flex items-center space-x-2">
-                        <i class="fa-solid fa-envelope-open-text text-pink-400"></i>
-                        <span>Hộp Thư Tình Yêu</span>
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4">Gửi gắm những lời nhắn nhủ ngọt ngào cho người ấy ở đây nhé!</p>
-                    
-                    <div id="notes-display" class="bg-white/80 rounded-2xl p-4 h-40 overflow-y-auto mb-4 border border-rose-100 shadow-inner space-y-2 text-sm">
-                        <div class="p-2.5 bg-rose-50 rounded-xl text-rose-700 font-medium border border-rose-100">
-                            💌 <strong>Bin:</strong> Bean là điều tuyệt vời nhất mà cuộc đời ban tặng cho anh!
-                        </div>
-                        <div class="p-2.5 bg-pink-50 rounded-xl text-pink-700 font-medium border border-pink-100">
-                            💌 <strong>Bean:</strong> Cảm ơn Bin vì luôn yêu thương và chiều chuộng Bean nhé.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="space-y-3">
-                    <input type="text" id="sender-name" placeholder="Tên bạn (Bin hay Bean?)..." class="w-full px-4 py-2.5 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-rose-400 bg-white/90 text-sm font-medium">
-                    <div class="flex space-x-2">
-                        <input type="text" id="note-input" placeholder="Viết lời nhắn ngọt ngào..." class="flex-grow px-4 py-2.5 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-rose-400 bg-white/90 text-sm font-medium">
-                        <button id="send-note-btn" class="bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-xl font-semibold transition shadow-md text-sm flex items-center space-x-1">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Why I Love You Card -->
-            <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between">
-                <div>
-                    <h3 class="font-pacifico text-2xl text-amber-600 mb-2 flex items-center space-x-2">
-                        <i class="fa-solid fa-star text-amber-400"></i>
-                        <span>Lý Do Yêu Nhau</span>
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-6">Mỗi lần bấm nút là một lý do vì sao chúng mình thuộc về nhau!</p>
-                    
-                    <div id="reason-box" class="bg-gradient-to-br from-amber-50 to-rose-50 rounded-2xl p-6 border border-amber-200 shadow-sm text-center min-h-[120px] flex items-center justify-center">
-                        <p id="reason-text" class="text-gray-700 font-semibold text-lg italic">
-                            "Bởi vì nụ cười của cậu ngọt hơn cả kẹo bông gòn! 🥰"
-                        </p>
-                    </div>
-                </div>
-
-                <button id="random-reason-btn" class="w-full mt-6 bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white py-3 rounded-xl font-bold shadow-md transition transform hover:scale-[1.02] flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <span>Khám Phá Lý Do Tiếp Theo</span>
-                </button>
-            </div>
-        </div>
-
-    </main>
-
-    <div id="love-letter-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-card w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative border-2 border-rose-200 bg-white/95 animate-fade-in">
-            <button id="close-letter-btn" class="absolute top-4 right-4 text-gray-400 hover:text-rose-600 w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 hover:bg-rose-50 transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <div class="text-center mb-6">
-                <span class="text-3xl">💌</span>
-                <h3 class="font-pacifico text-3xl text-rose-500 mt-2">Bức Thư Tình Yêu</h3>
-                <p class="text-xs text-rose-400 font-semibold mt-1">Dành riêng cho nửa kia tuyệt vời nhất</p>
-            </div>
-            <div class="bg-rose-50/50 p-6 rounded-2xl border border-rose-100 text-gray-700 space-y-3 text-sm sm:text-base leading-relaxed italic">
-                <p>Gửi Bin & Bean thân yêu,</p>
-                <p>Cảm ơn vì đã bước vào cuộc đời nhau và biến mỗi ngày thường nhật thành một ngày lễ tình yêu. Từ những buổi hẹn hò giản dị cho đến những giấc mơ lớn lao tương lai, chúng mình sẽ luôn sát cánh bên nhau.</p>
-                <p class="text-right font-bold text-rose-600 not-italic pt-2">- Mãi yêu thương, Bin & Bean -</p>
-            </div>
-            <div class="mt-6 text-center">
-                <button id="modal-heart-btn" class="bg-gradient-to-r from-rose-400 to-pink-500 text-white px-6 py-2.5 rounded-full font-semibold shadow-md hover:from-rose-500 hover:to-pink-600 transition">
-                    Gửi Ngàn Tim 💖
-                </button>
-            </div>
+        <!-- Thanh nhạc phát bài hát theo yêu cầu -->
+        <div class="music-player-bar">
+            <div class="music-disc"><i class="fa-solid fa-compact-disc"></i></div>
+            <div class="music-info">Đang phát: 50 Năm Về Sau (Remix) - Nam Con x Bin Xinh Music</div>
         </div>
     </div>
 
-    <footer class="w-full py-6 text-center text-gray-500 text-sm bg-white/40 border-t border-rose-100 z-10">
-        <p class="font-medium">Made with 💖 for <span class="font-pacifico text-rose-500 text-base">Bin & Bean</span> • Forever & Always</p>
-    </footer>
+    <!-- NHÚNG NHẠC YOUTUBE ẨN (Tự động phát lặp lại bài hát) -->
+    <!-- Thay ID video bên dưới bằng ID video bài hát trên YouTube nếu có (mặc định cấu hình lặp vô hạn) -->
+    <div style="display:none;">
+        <iframe width="0" height="0" 
+            src="https://www.youtube.com/embed/Mo6SOneSdr4?autoplay=1&loop=1&playlist=Mo6SOneSdr4" 
+            title="50 Nam Ve Sau Remix" 
+            frameborder="0" 
+            allow="autoplay">
+        </iframe>
+    </div>
 
     <script>
-        // Sparkle generation
-        const sparkleContainer = document.getElementById('sparkle-container');
-        const sparkleCount = 35;
-
-        for (let i = 0; i < sparkleCount; i++) {
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('sparkle');
-            sparkle.style.width = Math.random() * 6 + 4 + 'px';
-            sparkle.style.height = sparkle.style.width;
-            sparkle.style.top = Math.random() * 100 + '%';
-            sparkle.style.left = Math.random() * 100 + '%';
-            sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
-            sparkle.style.animationDelay = Math.random() * 2 + 's';
-            sparkleContainer.appendChild(sparkle);
-        }
-
-        // Typing Effect for Title
-        const titleElement = document.getElementById('typing-title');
-        const titleText = "Bin & Bean Love Story";
-        let charIndex = 0;
-        titleElement.innerText = "";
-
-        function typeTitle() {
-            if (charIndex < titleText.length) {
-                titleElement.innerText += titleText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeTitle, 100);
-            }
-        }
-        setTimeout(typeTitle, 500);
-
-        // Floating heart creator function
+        // 1. Tạo hiệu ứng trái tim bay liên tục
         function createFloatingHeart() {
+            const container = document.getElementById('floatingHearts');
             const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
+            heart.classList.add('heart-float');
             heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            document.body.appendChild(heart);
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            container.appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
-            }, 4000);
+            }, 7000);
         }
+        setInterval(createFloatingHeart, 400);
 
-        setInterval(createFloatingHeart, 800);
-
-        // Love button click handler with confetti fireworks
-        const loveBtn = document.getElementById('love-btn');
-        loveBtn.addEventListener('click', () => {
-            for (let i = 0; i < 15; i++) {
-                setTimeout(createFloatingHeart, i * 50);
-            }
-            confetti({
-                particleCount: 100,
-                spread: 80,
-                origin: { y: 0.6 },
-                colors: ['#f43f5e', '#fb7185', '#fbbf24', '#34d399', '#ec4899']
-            });
-        });
-
-        // Real-time Countdown timer starting from August 28, 2026
-        const anniversaryDate = new Date('2026-08-28T00:00:00');
+        // 2. Bộ đếm thời gian bắt đầu từ 28 tháng 8 năm 2026
+        const startDate = new Date("August 28, 2026 00:00:00").getTime();
 
         function updateCountdown() {
-            const now = new Date();
-            const diff = now - anniversaryDate;
+            const now = new Date().getTime();
+            const distance = now - startDate;
 
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutes = Math.floor((diff / 1000 / 60) % 60);
-                const seconds = Math.floor((diff / 1000) % 60);
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
             } else {
-                // If before Aug 28, 2026 or exactly at start
-                document.getElementById('days').innerText = "00";
-                document.getElementById('hours').innerText = "00";
-                document.getElementById('minutes').innerText = "00";
-                document.getElementById('seconds').innerText = "00";
+                document.getElementById("days").innerText = "0";
+                document.getElementById("hours").innerText = "0";
+                document.getElementById("minutes").innerText = "0";
+                document.getElementById("seconds").innerText = "0";
             }
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Web Audio API Synthesized Relaxing Melody
-        let audioCtx = null;
-        let isPlayingMusic = false;
-        let melodyInterval = null;
-
-        const musicToggle = document.getElementById('music-toggle');
-        const musicIcon = document.getElementById('music-icon');
-        const musicText = document.getElementById('music-text');
-
-        function playTone(freq, duration, type = 'sine', gainVal = 0.05) {
-            if (!audioCtx) return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-                gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch (e) {
-                console.log("Audio play error", e);
-            }
-        }
-
-        const notesSequence = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50]; // C5 major scale
-        
-        function startMelody() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            isPlayingMusic = true;
-            musicIcon.classList.remove('fa-music');
-            musicIcon.classList.add('fa-pause', 'animate-spin');
-            musicText.innerText = 'Tắt Nhạc';
-
-            let step = 0;
-            melodyInterval = setInterval(() => {
-                if (!isPlayingMusic) return;
-                const note = notesSequence[Math.floor(Math.random() * notesSequence.length)];
-                playTone(note, 1.5, 'sine', 0.04);
-            }, 1200);
-        }
-
-        function stopMelody() {
-            isPlayingMusic = false;
-            clearInterval(melodyInterval);
-            musicIcon.classList.remove('fa-pause', 'animate-spin');
-            musicIcon.classList.add('fa-music');
-            musicText.innerText = 'Nhạc Nền';
-        }
-
-        musicToggle.addEventListener('click', () => {
-            if (!isPlayingMusic) {
-                startMelody();
-            } else {
-                stopMelody();
-            }
-        });
-
-        // Love Letter Modal functionality
-        const openLetterBtn = document.getElementById('open-letter-btn');
-        const closeLetterBtn = document.getElementById('close-letter-btn');
-        const loveLetterModal = document.getElementById('love-letter-modal');
-        const modalHeartBtn = document.getElementById('modal-heart-btn');
-
-        openLetterBtn.addEventListener('click', () => {
-            loveLetterModal.classList.remove('hidden');
-            confetti({ particleCount: 50, spread: 70, origin: { y: 0.5 } });
-        });
-
-        closeLetterBtn.addEventListener('click', () => {
-            loveLetterModal.classList.add('hidden');
-        });
-
-        modalHeartBtn.addEventListener('click', () => {
-            for (let i = 0; i < 20; i++) {
-                setTimeout(createFloatingHeart, i * 40);
-            }
-            confetti({ particleCount: 120, spread: 100, origin: { y: 0.5 } });
-        });
-
-        // Love reasons array
-        const reasons = [
-            "Bởi vì nụ cười của cậu ngọt hơn cả kẹo bông gòn! 🥰",
-            "Vì cậu luôn lắng nghe và thấu hiểu tớ mọi lúc mọi nơi. 💖",
-            "Cảm giác được ôm cậu vào lòng là bình yên nhất trên đời. 🤗",
-            "Cậu nấu ăn rất ngon và hay pha trò hài hước cho tớ cười. 🍜",
-            "Ánh mắt của cậu làm tim tớ lỡ nhịp từ cái nhìn đầu tiên. ✨",
-            "Vì chúng mình cùng chung sở thích đi dạo phố và ăn vặt. 🧋",
-            "Bởi vì cậu là mảnh ghép hoàn hảo mà tớ vẫn luôn tìm kiếm. 🧩",
-            "Mỗi ngày bên cậu đều tràn ngập niềm vui và tiếng cười. 🌸"
+        // 3. Danh sách thông điệp yêu thương ngẫu nhiên khi bấm nút
+        const wishes = [
+            "“Dù 50 năm về sau, tay trong tay ta vẫn mãi tình củm thế này nhé Bin & Bean! 💕”",
+            "“Cảm ơn Bean vì đã làm thế giới của Bin ngập tràn tiếng cười và sự ngọt ngào! 🌸”",
+            "“Mỗi ngày bên Bean đều là một ngày hạnh phúc nhất cuộc đời Bin! ✨”",
+            "“Trái tim Bin luôn hướng về Bean, dù 50 năm hay bao lâu đi nữa! 💖”"
         ];
 
-        const randomReasonBtn = document.getElementById('random-reason-btn');
-        const reasonText = document.getElementById('reason-text');
-
-        randomReasonBtn.addEventListener('click', () => {
-            const randomIndex = Math.floor(Math.random() * reasons.length);
-            reasonText.style.opacity = 0;
-            setTimeout(() => {
-                reasonText.innerText = `"${reasons[randomIndex]}"`;
-                reasonText.style.opacity = 1;
-            }, 200);
-            confetti({ particleCount: 35, spread: 60, origin: { y: 0.8 } });
-        });
-        reasonText.style.transition = 'opacity 0.3s ease';
-
-        // Love notes submission logic
-        const sendNoteBtn = document.getElementById('send-note-btn');
-        const noteInput = document.getElementById('note-input');
-        const senderName = document.getElementById('sender-name');
-        const notesDisplay = document.getElementById('notes-display');
-
-        sendNoteBtn.addEventListener('click', () => {
-            const name = senderName.value.trim() || 'Ẩn danh';
-            const message = noteInput.value.trim();
-
-            if (message) {
-                const noteItem = document.createElement('div');
-                noteItem.classList.add('p-2.5', 'bg-pink-50', 'rounded-xl', 'text-pink-700', 'font-medium', 'border', 'border-pink-100');
-                noteItem.innerHTML = `💌 <strong>${escapeHtml(name)}:</strong> ${escapeHtml(message)}`;
-                notesDisplay.prepend(noteItem);
-                
-                noteInput.value = '';
-                confetti({ particleCount: 40, spread: 60 });
-            }
-        });
-
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        function showLoveWish() {
+            const randomIndex = Math.floor(Math.random() * wishes.length);
+            document.getElementById("loveQuote").innerText = wishes[randomIndex];
         }
     </script>
 </body>
